@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.main {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) { /* sm */
+  .main {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}
+
+@media (min-width: 768px) { /* md */
+  .main {
+    padding-left: 7vw;
+    padding-right: 7vw;
+  }
+}
+
+@media (min-width: 1024px) { /* lg */
+  .main {
+    padding-left: 9vw;
+    padding-right: 9vw;
+  }
+}
