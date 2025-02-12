@@ -68,12 +68,14 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px;
     border-radius: 5px;
+    z-index: 100; /* Ensure the dropdown is above other elements */
 }
 
-.profile-dropdown:hover .dropdown-menu {
+/* Show dropdown when hovering over the profile icon or the dropdown itself */
+.profile-dropdown:hover .dropdown-menu,
+.dropdown-menu:hover {
     display: block;
 }
-
 .cart {
     position: relative;
 }

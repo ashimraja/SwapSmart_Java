@@ -1,0 +1,89 @@
+/* General styles */
+.sell-main {
+    margin: 0;
+    height:full;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:30px;
+}
+
+/* Sell container */
+.sell-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Form container */
+.sell-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Form header */
+.form-header {
+    margin-bottom: 1.5rem;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.form-divider {
+    border: none;
+    height: 2px;
+    background: #333;
+    width: 50px;
+    margin: 0.5rem auto;
+}
+
+/* Form fields */
+.form-field {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.form-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-field textarea {
+    resize: vertical;
+}
+
+/* Submit button */
+.submit-button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background: #555;
+}

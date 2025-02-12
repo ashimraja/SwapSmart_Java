@@ -1,0 +1,94 @@
+/* General styles */
+.login-main {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    padding-top:30px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Form container */
+.auth-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Form header */
+.form-header {
+    margin-bottom: 1.5rem;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.form-divider {
+    border: none;
+    height: 2px;
+    background: #333;
+    width: 50px;
+    margin: 0.5rem auto;
+}
+
+/* Form fields */
+.form-field {
+    margin-bottom: 1rem;
+}
+
+.form-field input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Form links */
+.form-links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-links a {
+    color: #333;
+    text-decoration: none;
+}
+
+.form-links a:hover {
+    text-decoration: underline;
+}
+
+/* Submit button */
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #555;
+}
