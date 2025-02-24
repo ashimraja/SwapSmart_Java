@@ -4,9 +4,8 @@
 <div class="hero-container">
     <div class="slider-container">
         <div class="slider">
-            <img class="slide" src="../assets/images/featuring1.jpeg" alt="Slide 1">
-            <img class="slide" src="../assets/images/featuring1.jpeg" alt="Slide 2">
-            <img class="slide" src="../assets/images/featuring1.jpeg" alt="Slide 3">
+        	<div class="slide slide1"></div>
+        	<div class="slide slide2"></div>
         </div>
         <button class="prev" onclick="prevSlide()">&#10094;</button>
         <button class="next" onclick="nextSlide()">&#10095;</button>
