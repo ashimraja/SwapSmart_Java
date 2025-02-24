@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="../assets/css/index.css">
+<link rel="stylesheet" type="text/css" href="assets/css/index.css">
 <%@ include file="../components/navbar.jsp" %>
 <div class="main">
 <%@ include file="../components/hero.jsp" %>
