@@ -1,11 +1,11 @@
-<link rel="stylesheet" type="text/css" href="../assets/css/index.css">
+<link rel="stylesheet" type="text/css" href="./assets/css/index.css">
 <%@ include file="../components/navbar.jsp" %>
 <div class="main">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - SwapSmart</title>
-    <link rel="stylesheet" href="../assets/css/about.css">
+    <link rel="stylesheet" href="./assets/css/about.css">
 </head>
 <body>
     <div class="about-container">
@@ -15,7 +15,7 @@
         </div>
 
         <div class="about-content">
-            <img src="../assets/images/iphone.jpg" alt="About Us" class="about-image">
+            <img src="./assets/images/iphone.jpg" alt="About Us" class="about-image">
             <div class="about-text">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia distinctio, doloribus eum inventore, dolor vel, obcaecati autem ipsam quae facilis illum id nobis perferendis. Obcaecati quis ratione aut enim ducimus?</p>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste illum vitae voluptate hic cum fugit! Iure eos ab repellendus asperiores quo at, natus ex deleniti consequatur exercitationem delectus optio illum.</p>

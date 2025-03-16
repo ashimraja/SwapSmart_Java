@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="../assets/css/hero.css">
+<link rel="stylesheet" type="text/css" href="./assets/css/hero.css">
 
 <div class="hero-container">
     <div class="slider-container">
@@ -12,4 +12,4 @@
     </div>
 </div>
 
-<script src="../assets/js/slider.js"></script>
+<script src="./assets/js/slider.js"></script>

@@ -1,8 +1,8 @@
 
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Arrays" %>
-<link rel="stylesheet" type="text/css" href="../assets/css/index.css">
-<%@ include file="../components/navbar.jsp" %>
+<link rel="stylesheet" type="text/css" href="./assets/css/index.css">
+<%@ include file="./components/navbar.jsp" %>
 <div class="main">
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details</title>
-    <link rel="stylesheet" href="../assets/css/product.css">
+    <link rel="stylesheet" href="./assets/css/product.css">
 </head>
 <body>
 
@@ -86,5 +86,5 @@
 
 </body>
 </html>
-<%@ include file="../components/footer.jsp" %>
+<%@ include file="./components/footer.jsp" %>
 </div>

@@ -1,17 +1,17 @@
-<link rel="stylesheet" type="text/css" href="../assets/css/index.css">
-<%@ include file="../components/navbar.jsp" %>
+<link rel="stylesheet" type="text/css" href="./assets/css/index.css">
+<%@ include file="./components/navbar.jsp" %>
 <div class="main">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sell Your Phone</title>
-    <link rel="stylesheet" href="../assets/css/sell.css">
+    <link rel="stylesheet" href="./assets/css/sell.css">
 </head>
 <body>
 <div class="sell-main">
     <div class="sell-container">
-        <form id="sellForm" class="sell-form" action="#" method="POST" enctype="multipart/form-data">
+        <form id="sellForm" class="sell-form" action="sellPhone" method="POST" enctype="multipart/form-data">
             <div class="form-header">
                 <p class="form-title">Sell Your Phone</p>
                 <hr class="form-divider" />
@@ -101,5 +101,5 @@
     </script>
 </body>
 
-<%@ include file="../components/footer.jsp" %>
+<%@ include file="./components/footer.jsp" %>
 </div>
