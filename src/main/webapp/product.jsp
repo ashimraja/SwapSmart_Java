@@ -1,10 +1,8 @@
-
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Arrays" %>
+<%@ page import="java.sql.*, java.util.*" %>
+<%@ page import="com.swapSmart.utils.DBConnection" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" type="text/css" href="./assets/css/index.css">
 <%@ include file="./components/navbar.jsp" %>
-<div class="main">
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,50 +11,79 @@
     <link rel="stylesheet" href="./assets/css/product.css">
 </head>
 <body>
+<div class="main">
+<%
+    String id = request.getParameter("id");
+    String productName = "";
+    double productPrice = 0.0;
+    double firstHandPrice = 0.0;
+    String productDescription = "";
+    String ram = "";
+    String rom = "";
+    String city = "";
+    String state = "";
+    String country = "";
+    String imagePath = "";
 
-<% 
-    // Dummy Product Data (Replace with Database Call)
-    String productName = "iPhone 12 Pro";
-    double productPrice = 799.99;
-    String productDescription = "The iPhone 12 Pro comes with an A14 Bionic chip, Super Retina XDR display, and triple-camera system.";
-    List<String> images = Arrays.asList("iphone.jpg", "iphone2.jpg", "iphone3.jpg", "iphone4.jpg");
-    List<String> sizes = Arrays.asList("64GB", "128GB", "256GB");
+    if (id != null && !id.isEmpty()) {
+        try (Connection conn = DBConnection.getConnection()) {
+            String sql = "SELECT * FROM phones_for_sale WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, Integer.parseInt(id));
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                productName = rs.getString("phone_name");
+                productPrice = rs.getDouble("price");
+                firstHandPrice = rs.getDouble("first_hand_price");
+                productDescription = rs.getString("description");
+                ram = rs.getString("ram");
+                rom = rs.getString("rom");
+                city = rs.getString("city");
+                state = rs.getString("state");
+                country = rs.getString("country");
+                imagePath = rs.getString("image");
+            } else {
+                out.println("<h3>Product not found.</h3>");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 %>
 
 <div class="product-container">
-    <!-- Product Data -->
     <div class="product-data">
         <!-- Product Image Section -->
         <div class="product-images">
             <div class="thumbnail-list">
-                <% for (String img : images) { %>
-                    <img src="../assets/images/<%= img %>" onclick="setMainImage('<%= img %>')" class="thumbnail" alt="Product Image" />
-                <% } %>
+                <img src="<%= imagePath %>" onclick="setMainImage('<%= imagePath %>')" class="thumbnail" alt="Product Image" />
             </div>
             <div class="main-image">
-                <img id="mainImage" src="../assets/images/<%= images.get(0) %>" alt="Main Product Image"/>
+                <img id="mainImage" src="<%= imagePath %>" alt="Main Product Image"/>
             </div>
         </div>
         <!-- Product Details Section -->
         <div class="product-details">
             <h1 class="product-title"><%= productName %></h1>
             <div class="rating">
-                <img src="../assets/images/star_icon.png" alt="Star Icon" class="star-icon"/>
-                <img src="../assets/images/star_icon.png" alt="Star Icon" class="star-icon"/>
-                <img src="../assets/images/star_icon.png" alt="Star Icon" class="star-icon"/>
-                <img src="../assets/images/star_icon.png" alt="Star Icon" class="star-icon"/>
+                <img src="./assets/images/star_icon.png" alt="Star Icon" class="star-icon"/>
+                <img src="./assets/images/star_icon.png" alt="Star Icon" class="star-icon"/>
+                <img src="./assets/images/star_icon.png" alt="Star Icon" class="star-icon"/>
+                <img src="./assets/images/star_icon.png" alt="Star Icon" class="star-icon"/>
                 <p class="rating-count">(122)</p>
             </div>
-            <p class="product-price">$<%= productPrice %></p>
+            <p class="product-price">₹ <%= productPrice %></p>
             <p class="product-description"><%= productDescription %></p>
+            <p>RAM: <%= ram %> | ROM: <%= rom %></p>
+            <p>Location: <%= city %>, <%= state %>, <%= country %></p>
             <div class="action-buttons">
-                <button class="buy-now-button">BUY NOW</button>
-                <button onclick="addToCart()" class="add-to-cart-button">ADD TO CART</button>
-            </div>
+			    <button type="button" onclick="buyNow()" class="buy-now-button">BUY NOW</button>
+			    <button onclick="addToCart()" class="add-to-cart-button">ADD TO CART</button>
+			</div>
             <hr class="divider"/>
             <div class="trust-info">
-                <p>100% Trusted Website.</p>
-                <p>Cash on delivery is available for this product</p>
+                <p>100% Trusted Platform.</p>
+                <p>Cash on Delivery Available.</p>
             </div>
         </div>
     </div>
@@ -68,23 +95,27 @@
             <button class="tab-button">Reviews (122)</button>
         </div>
         <div class="description-content">
-            <p>An e-commerce website is an Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sequi perspiciatis harum quidem veniam totam quam aperiam numquam. A, rerum. Sed necessitatibus explicabo rerum asperiores minima deserunt eos consequatur expedita.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis recusandae fugit rerum, provident officiis debitis illum nemo? Numquam doloribus officia, architecto eos error atque provident quasi voluptas sit unde quis.</p>
+            <p><%= productDescription %></p>
+            <p>Original Price (First Hand): ₹ <%= firstHandPrice %></p>
+            <p>Product from <%= city %>, <%= state %>, <%= country %>.</p>
         </div>
     </div>
 </div>
 
 <script>
     function setMainImage(image) {
-        document.getElementById('mainImage').src = `../assets/images/${image}`;
+        document.getElementById('mainImage').src = image;
     }
-
+    function buyNow() {
+        const productId = '<%= id %>'; // Get the product ID from server-side
+        // Redirect or submit programmatically
+        window.location.href = "checkout.jsp?id=" + encodeURIComponent(productId);
+    }
     function addToCart() {
         alert('Product added to cart!');
     }
 </script>
 
+<%@ include file="./components/footer.jsp" %>
 </body>
 </html>
-<%@ include file="./components/footer.jsp" %>
-</div>

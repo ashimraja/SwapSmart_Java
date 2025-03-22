@@ -58,7 +58,17 @@
 .profile-dropdown {
     position: relative;
 }
-
+.logout {
+  display: inline-block;
+  padding: 5px 10px;
+  color: #fff;
+  background-color: #000;
+  border: 2px solid #000;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
 .dropdown-menu {
     display: none;
     position: absolute;

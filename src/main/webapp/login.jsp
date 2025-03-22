@@ -2,9 +2,8 @@
 <%@ page session="true" %>
 
 <%
-    User loggedInUser = (User) session.getAttribute("user");
-    if (loggedInUser != null) {
-        response.sendRedirect("./"); // Redirect to dashboard if already logged in
+    if (session.getAttribute("user") != null) {
+        response.sendRedirect("./");
         return;
     }
 %>

@@ -1,13 +1,15 @@
 <%@ page import="java.util.*" %>
+<%@ page import="com.swapSmart.model.User" %>
 <%
     String currentPage = request.getServletPath();
+    User loggedInUser = (User) session.getAttribute("user");
 %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Add the viewport meta tag here -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SwapSmart</title>
     <link rel="stylesheet" href="./assets/css/navbar.css">
 </head>
@@ -28,11 +30,22 @@
             <!-- Icons (Search, Profile, Cart, Menu) -->
             <div class="icons">
                 <img src="./assets/images/search_icon.png" class="icon" alt="Search">
-                <a href="login.jsp">
-                <div class="profile-dropdown">
-				    <img src="./assets/images/profile_icon.png" class="icon profile-icon" alt="Profile">
-				</div>
-				</a>
+                
+                <% if (loggedInUser != null) { %>
+                    <a href="logout.jsp">
+                        <div class="profile-dropdown">
+                           <!--  <img src="./assets/images/logout_icon.png" class="icon profile-icon" alt="Logout">-->
+                           <p class='logout'>logout</p>
+                        </div>
+                    </a>
+                <% } else { %>
+                    <a href="login.jsp">
+                        <div class="profile-dropdown">
+                            <img src="./assets/images/profile_icon.png" class="icon profile-icon" alt="Login">
+                        </div>
+                    </a>
+                <% } %>
+                
                 <a href="cart.jsp" class="cart">
                     <img src="./assets/images/cart_icon.png" class="icon" alt="Cart">
                     <span class="cart-count">0</span>
@@ -50,6 +63,11 @@
                 <a href="sell.jsp">SELL</a>
                 <a href="about.jsp">ABOUT</a>
                 <a href="contact.jsp">CONTACT</a>
+                <% if (loggedInUser != null) { %>
+                    <a href="logout.jsp">LOGOUT</a>
+                <% } else { %>
+                    <a href="login.jsp">LOGIN</a>
+                <% } %>
             </div>
         </div>
     </div>

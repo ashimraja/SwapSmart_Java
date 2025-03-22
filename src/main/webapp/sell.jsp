@@ -2,6 +2,14 @@
 <%@ include file="./components/navbar.jsp" %>
 <div class="main">
 
+<%
+    // Check if user is logged in
+    if (session.getAttribute("user") == null) {
+        out.println("<script>alert('Please log in to sell your phone!'); window.location.href='login.jsp';</script>");
+        return;
+    }
+%>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -90,15 +98,16 @@
     </div>
 </div>
     <script>
-        // Simulate form submission
-        const sellForm = document.getElementById('sellForm');
-        sellForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(sellForm);
-            const data = Object.fromEntries(formData.entries());
-            alert(`Form submitted:\n${JSON.stringify(data, null, 2)}`);
-        });
-    </script>
+    const sellForm = document.getElementById('sellForm');
+    sellForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(sellForm);
+        const data = Object.fromEntries(formData.entries());
+        alert(`Form submitted:\n${JSON.stringify(data, null, 2)}`);
+        sellForm.submit();
+    });
+</script>
+    
 </body>
 
 <%@ include file="./components/footer.jsp" %>

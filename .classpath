@@ -15,5 +15,9 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="D:/JavaDevelopment/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar"/>
 	<classpathentry kind="lib" path="D:/JavaDevelopment/json-20250107.jar"/>
+	<classpathentry kind="lib" path="D:/JavaDevelopment/jakarta.mail-api-2.1.2.jar"/>
+	<classpathentry kind="lib" path="D:/JavaDevelopment/jakarta.mail-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/JavaDevelopment/jakarta.activation-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/JavaDevelopment/jakarta.activation-2.0.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

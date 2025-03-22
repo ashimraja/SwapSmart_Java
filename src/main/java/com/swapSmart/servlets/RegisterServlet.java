@@ -51,7 +51,8 @@ public class RegisterServlet extends HttpServlet {
 
                 int rowsAffected = stmt.executeUpdate();
                 if (rowsAffected > 0) {
-                    jsonResponse.put("success", true);
+                    response.sendRedirect("login.jsp");
+                    return;    
                 } else {
                     jsonResponse.put("success", false);
                     jsonResponse.put("message", "Failed to create account.");

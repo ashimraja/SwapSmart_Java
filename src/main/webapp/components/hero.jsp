@@ -6,6 +6,7 @@
         <div class="slider">
         	<div class="slide slide1"></div>
         	<div class="slide slide2"></div>
+        	<div class="slide slide3"></div>
         </div>
         <button class="prev" onclick="prevSlide()">&#10094;</button>
         <button class="next" onclick="nextSlide()">&#10095;</button>

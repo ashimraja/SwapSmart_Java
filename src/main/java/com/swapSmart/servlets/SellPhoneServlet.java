@@ -11,20 +11,31 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 import com.swapSmart.utils.DBConnection;
+import com.swapSmart.model.User; // ✅ Import your User model class (make sure it's in this package)
 
 @WebServlet("/sellPhone")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
-                 maxFileSize = 1024 * 1024 * 10, // 10MB
-                 maxRequestSize = 1024 * 1024 * 50) // 50MB
+        maxFileSize = 1024 * 1024 * 10, // 10MB
+        maxRequestSize = 1024 * 1024 * 50) // 50MB
 public class SellPhoneServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+        // ✅ Get logged-in user from session
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+        int soldByUserId = user.getId();
+
         // Retrieve form data
         String phoneName = request.getParameter("phoneName");
         String model = request.getParameter("model");
@@ -42,25 +53,23 @@ public class SellPhoneServlet extends HttpServlet {
         // Handle Image Upload
         Part filePart = request.getPart("image");
         String fileName = System.currentTimeMillis() + "_" + filePart.getSubmittedFileName();
-        
-        // Define the path where images should be saved inside webapp/assets/images
+
+        // Save image inside webapp/assets/images
         String relativeWebPath = "/assets/images/";
         String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
         File fileSaveDir = new File(absoluteDiskPath);
-
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdirs();
         }
-
         String imagePath = absoluteDiskPath + File.separator + fileName;
         filePart.write(imagePath);
 
-        // Save data to database
+        // Save data to database with sold_by_user_id
         try (Connection conn = DBConnection.getConnection()) {
-            String sql = "INSERT INTO phones_for_sale (phone_name, model, price, first_hand_price, description, ram, rom, city, state, zipcode, country, phone, image) " +
-                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            
+            String sql = "INSERT INTO phones_for_sale (phone_name, model, price, first_hand_price, description, ram, rom, city, state, zipcode, country, phone, image, sold_by_user_id) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
+
             stmt.setString(1, phoneName);
             stmt.setString(2, model);
             stmt.setBigDecimal(3, new java.math.BigDecimal(price));
@@ -73,11 +82,12 @@ public class SellPhoneServlet extends HttpServlet {
             stmt.setString(10, zipcode);
             stmt.setString(11, country);
             stmt.setString(12, phone);
-            stmt.setString(13, "assets/images/" + fileName); // Store relative path in DB
+            stmt.setString(13, "assets/images/" + fileName); // Store relative image path in DB
+            stmt.setInt(14, soldByUserId); // 👈 Add seller user ID here
 
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
-                response.sendRedirect("sellSuccess.jsp"); // Redirect to success page
+                response.sendRedirect("sellSuccess.jsp");
             } else {
                 response.getWriter().write("Failed to save data.");
             }
