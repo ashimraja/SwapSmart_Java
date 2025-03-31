@@ -20,32 +20,32 @@
 
             <!-- Desktop Navigation -->
             <ul class="nav-links">
-                <li><a href="./" class="<%= currentPage.equals("/home.jsp") ? "active" : "" %>">HOME</a></li>
+                <li><a href="home.jsp" class="<%= currentPage.equals("/home.jsp") ? "active" : "" %>">HOME</a></li>
                 <li><a href="sell.jsp" class="<%= currentPage.equals("/sell.jsp") ? "active" : "" %>">SELL</a></li>
                 <li><a href="buy.jsp" class="<%= currentPage.equals("/buy.jsp") ? "active" : "" %>">BUY</a></li>
                 <li><a href="about.jsp" class="<%= currentPage.equals("/about.jsp") ? "active" : "" %>">ABOUT</a></li>
                 <li><a href="contact.jsp" class="<%= currentPage.equals("/contact.jsp") ? "active" : "" %>">CONTACT</a></li>
+                
+                <% if (loggedInUser != null && "admin".equalsIgnoreCase(loggedInUser.getRole())) { %>
+                    <li><a href="adminDashboard.jsp" class="<%= currentPage.equals("/adminDashboard.jsp") ? "active" : "" %>">ADMIN PANEL</a></li>
+                <% } %>
             </ul>
 
             <!-- Icons (Search, Profile, Cart, Menu) -->
             <div class="icons">
                 <img src="./assets/images/search_icon.png" class="icon" alt="Search">
-                
+
                 <% if (loggedInUser != null) { %>
-                    <a href="logout.jsp">
-                        <div class="profile-dropdown">
-                           <!--  <img src="./assets/images/logout_icon.png" class="icon profile-icon" alt="Logout">-->
-                           <p class='logout'>logout</p>
-                        </div>
-                    </a>
+                    <div class="profile-dropdown">
+                        <p class="user-name">Hello, <%= loggedInUser.getName() %></p>
+                        <a href="logout.jsp" class="logout-button">Logout</a>
+                    </div>
                 <% } else { %>
                     <a href="login.jsp">
-                        <div class="profile-dropdown">
-                            <img src="./assets/images/profile_icon.png" class="icon profile-icon" alt="Login">
-                        </div>
+                        <img src="./assets/images/profile_icon.png" class="icon profile-icon" alt="Login">
                     </a>
                 <% } %>
-                
+
                 <a href="cart.jsp" class="cart">
                     <img src="./assets/images/cart_icon.png" class="icon" alt="Cart">
                     <span class="cart-count">0</span>
@@ -63,6 +63,9 @@
                 <a href="sell.jsp">SELL</a>
                 <a href="about.jsp">ABOUT</a>
                 <a href="contact.jsp">CONTACT</a>
+                <% if (loggedInUser != null && "admin".equalsIgnoreCase(loggedInUser.getRole())) { %>
+                    <a href="adminDashboard.jsp">ADMIN PANEL</a>
+                <% } %>
                 <% if (loggedInUser != null) { %>
                     <a href="logout.jsp">LOGOUT</a>
                 <% } else { %>

@@ -17,11 +17,13 @@
         <div class="about-content">
             <img src="./assets/images/iphone.jpg" alt="About Us" class="about-image">
             <div class="about-text">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia distinctio, doloribus eum inventore, dolor vel, obcaecati autem ipsam quae facilis illum id nobis perferendis. Obcaecati quis ratione aut enim ducimus?</p>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste illum vitae voluptate hic cum fugit! Iure eos ab repellendus asperiores quo at, natus ex deleniti consequatur exercitationem delectus optio illum.</p>
+                <p> Welcome to <strong>SwapSmart</strong>, your trusted platform for buying and selling second-hand smartphones.
+            We bridge the gap between sellers and buyers by providing a safe, reliable, and convenient marketplace.</p>
+                <p>At <strong>SwapSmart</strong>, we ensure that every transaction is seamless, secure, and backed by our commitment to quality.
+            Our platform is built with cutting-edge technology to provide a user-friendly experience for both sellers and buyers.</p>
                 <b>Our Mission</b>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo laborum veritatis doloribus dicta aperiam optio labore, modi eligendi ad dolores ipsam cumque, deserunt quae qui aspernatur quam quod amet. A.</p>
-            </div>
+                <p>Our mission is to make smartphone trading effortless, transparent, and accessible to everyone.
+            We believe in sustainability by promoting the reuse of devices, reducing electronic waste, and helping people save money while getting quality gadgets.</p>
         </div>
 
         <!-- Why Choose Us Section -->

@@ -1,0 +1,110 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Dashboard */
+.dashboard-heading {
+    text-align: center;
+    padding: 20px;
+    color: #333;
+}
+
+.dashboard-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.dashboard-card {
+    width: 30%;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #333;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.logout-btn {
+    background-color: red;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    background: #333;
+    color: white;
+    position: fixed;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #575757;
+}
+
+/* Table */
+.custom-table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.custom-table th, .custom-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.custom-table th {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* Buttons */
+.custom-btn {
+    text-decoration: none;
+    padding: 8px 12px;
+    display: inline-block;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.custom-btn.warning {
+    background-color: orange;
+    color: white;
+}
+
+.custom-btn.danger {
+    background-color: red;
+    color: white;
+}

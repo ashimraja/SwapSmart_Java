@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -24,6 +25,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         try (Connection conn = DBConnection.getConnection()) {
+            // Updated query to check for role
             String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, email);
@@ -31,12 +33,37 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                User user = new User(rs.getInt("id"), rs.getString("name"), rs.getString("email"), rs.getString("password"));
+                String role = rs.getString("role").trim(); // Get user role
 
+                // Debugging: Print out the role fetched from the database
+                System.out.println("Fetched Role: " + role);
+
+                // Store user details in session
+                User user = new User(rs.getInt("id"), rs.getString("name"), rs.getString("email"), rs.getString("password"), role);
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
 
-                response.sendRedirect("./");
+                // Create cookies for user email and role
+                Cookie emailCookie = new Cookie("userEmail", email);
+                Cookie roleCookie = new Cookie("userRole", role);
+
+                // Set cookie expiry to 7 days (604800 seconds)
+                emailCookie.setMaxAge(604800);
+                roleCookie.setMaxAge(604800);
+
+                // Add cookies to response
+                response.addCookie(emailCookie);
+                response.addCookie(roleCookie);
+
+                // Debugging: Check if role is properly set
+                System.out.println("User role: " + role);
+
+                // Redirect based on role
+                if ("admin".equalsIgnoreCase(role)) {
+                    response.sendRedirect("adminDashboard.jsp");
+                } else {
+                    response.sendRedirect("./");
+                }
             } else {
                 response.sendRedirect("login.jsp?error=Invalid email or password");
             }
