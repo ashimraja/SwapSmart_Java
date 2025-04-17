@@ -54,7 +54,7 @@
                     <input class="border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1" type="number" min="1" name="quantity" value="<%= quantity %>" onchange="this.form.submit()" />
                 </form>
 
-                <!-- Delete button -->
+                <!-- Delete button  -->
                 <form action="deleteFromCartServlet" method="POST">
                     <input type="hidden" name="user_id" value="<%= user.getId() %>" />
                     <input type="hidden" name="product_id" value="<%= productId %>" />
