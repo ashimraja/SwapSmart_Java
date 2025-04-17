@@ -5,5 +5,6 @@
     <a href="adminDashboard.jsp">Dashboard</a>
     <a href="manageOrders.jsp">Manage Orders</a>
     <a href="manageUsers.jsp">Manage Users</a>
+    <a href="managePhones.jsp">Manage Phones</a>
     <a href="logout.jsp" class="logout-btn">Logout</a>
 </div>

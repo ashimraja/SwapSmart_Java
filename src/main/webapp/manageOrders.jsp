@@ -1,6 +1,5 @@
 <%@ page import="java.sql.Connection, java.sql.PreparedStatement, java.sql.ResultSet, com.swapSmart.utils.DBConnection" %>
 <%@ include file="./components/adminNavbar.jsp" %>
-<%@ include file="./components/adminSidebar.jsp" %>
 <link rel="stylesheet" href="./assets/css/adminStyles.css">
 
 <h2 class="dashboard-heading">Manage Orders</h2>
@@ -44,6 +43,7 @@
             <td><%= rs.getString("phone") %></td>
             <td><%= rs.getString("order_date") %></td>
             <td>
+            	<a href="editOrder.jsp?id=<%= rs.getInt("id") %>" class="custom-btn warning">Edit</a>
                 <a href="deleteOrder?id=<%= rs.getInt("id") %>" class="custom-btn danger">Delete</a>
             </td>
         </tr>

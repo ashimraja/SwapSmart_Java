@@ -1,7 +1,6 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="com.swapSmart.utils.DBConnection" %>
 <%@ include file="./components/adminNavbar.jsp" %>
-<%@ include file="./components/adminSidebar.jsp" %>
 <link rel="stylesheet" href="./assets/css/adminStyles.css">
 
 <h2 class="dashboard-heading">Manage Users</h2>
@@ -35,7 +34,7 @@
             <td><%= rs.getString("email") %></td>
             <td><%= rs.getString("role") %></td>
             <td>
-                <a href="editUser?id=<%= rs.getInt("id") %>" class="custom-btn warning">Edit</a>
+                <a href="editUser.jsp?id=<%= rs.getInt("id") %>" class="custom-btn warning">Edit</a>
                 <a href="deleteUser?id=<%= rs.getInt("id") %>" class="custom-btn danger">Delete</a>
             </td>
         </tr>

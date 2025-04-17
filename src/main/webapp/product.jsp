@@ -112,8 +112,28 @@
         window.location.href = "checkout.jsp?id=" + encodeURIComponent(productId);
     }
     function addToCart() {
-        alert('Product added to cart!');
+        const productId = '<%= id %>';
+        const quantity = 1;  // Default quantity for the cart
+
+        // Check if the user is logged in (using the 'user' session attribute)
+        const user = '<%= session.getAttribute("user") != null ? session.getAttribute("user") : "" %>';
+        if (user === "") {
+            alert("You need to log in to add items to the cart.");
+            return;
+        }
+
+        // Send AJAX request to add product to the cart
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'addToCartServlet', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                alert('Product added to cart!');
+            }
+        };
+        xhr.send('user=' + encodeURIComponent(user) + '&product_id=' + encodeURIComponent(productId) + '&quantity=' + encodeURIComponent(quantity));
     }
+
 </script>
 
 <%@ include file="./components/footer.jsp" %>

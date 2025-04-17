@@ -1,8 +1,28 @@
-<%@ page import="java.util.*" %>
+<%@ page import="java.sql.Connection, java.sql.PreparedStatement, java.sql.ResultSet" %>
 <%@ page import="com.swapSmart.model.User" %>
+<%@ page import="com.swapSmart.utils.DBConnection" %>
+
 <%
     String currentPage = request.getServletPath();
     User loggedInUser = (User) session.getAttribute("user");
+    int cartItemCount = 0;  // Default count is 0 if user is not logged in
+
+    // Get the cart item count if the user is logged in
+    if (loggedInUser != null) {
+        try (Connection conn = DBConnection.getConnection()) {
+            // SQL query to get the count of cart items for the logged-in user
+            String sql = "SELECT COUNT(*) FROM cart WHERE user_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, loggedInUser.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                cartItemCount = rs.getInt(1);  // Get the count of cart items
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 %>
 
 <!DOCTYPE html>
@@ -38,8 +58,9 @@
                 <% if (loggedInUser != null) { %>
                     <div class="profile-dropdown">
                         <p class="user-name">Hello, <%= loggedInUser.getName() %></p>
-                        <a href="logout.jsp" class="logout-button">Logout</a>
+                        
                     </div>
+                    <a href="logout.jsp" class="logout-button">Logout</a>
                 <% } else { %>
                     <a href="login.jsp">
                         <img src="./assets/images/profile_icon.png" class="icon profile-icon" alt="Login">
@@ -48,7 +69,8 @@
 
                 <a href="cart.jsp" class="cart">
                     <img src="./assets/images/cart_icon.png" class="icon" alt="Cart">
-                    <span class="cart-count">0</span>
+                    <!-- Show cart item count -->
+                    <span class="cart-count"><%= cartItemCount %></span>
                 </a>
                 <img src="./assets/images/menu_icon.png" class="icon menu-icon" onclick="toggleMenu()" alt="Menu">
             </div>

@@ -6,9 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import org.json.JSONObject;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,48 +21,43 @@ public class RegisterServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
-        JSONObject jsonResponse = new JSONObject();
 
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         try (Connection conn = DBConnection.getConnection()) {
-            // Check if user already exists
-            String checkUserQuery = "SELECT * FROM users WHERE email = ?";
-            PreparedStatement checkStmt = conn.prepareStatement(checkUserQuery);
+            // Step 1: Check if user already exists
+            String checkQuery = "SELECT * FROM users WHERE email = ?";
+            PreparedStatement checkStmt = conn.prepareStatement(checkQuery);
             checkStmt.setString(1, email);
             ResultSet rs = checkStmt.executeQuery();
 
             if (rs.next()) {
-                jsonResponse.put("success", false);
-                jsonResponse.put("message", "User already exists.");
-            } else {
-                // Insert new user
-                String insertQuery = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
-                PreparedStatement stmt = conn.prepareStatement(insertQuery);
-                stmt.setString(1, name);
-                stmt.setString(2, email);
-                stmt.setString(3, password); // Hash this password in production
-
-                int rowsAffected = stmt.executeUpdate();
-                if (rowsAffected > 0) {
-                    response.sendRedirect("login.jsp");
-                    return;    
-                } else {
-                    jsonResponse.put("success", false);
-                    jsonResponse.put("message", "Failed to create account.");
-                }
+                // User already exists, redirect with error
+                response.sendRedirect("login.jsp?error=exists");
+                return;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            jsonResponse.put("success", false);
-            jsonResponse.put("message", "Something went wrong.");
-        }
 
-        out.print(jsonResponse.toString());
-        out.flush();
+            // Step 2: Insert new user
+            String insertQuery = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+            PreparedStatement insertStmt = conn.prepareStatement(insertQuery);
+            insertStmt.setString(1, name);
+            insertStmt.setString(2, email);
+            insertStmt.setString(3, password); // Consider hashing
+            insertStmt.setString(4, "user");
+
+            int inserted = insertStmt.executeUpdate();
+
+            if (inserted > 0) {
+                response.sendRedirect("login.jsp?success=registered");
+            } else {
+                response.sendRedirect("login.jsp?error=failed");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendRedirect("login.jsp?error=exception");
+        }
     }
 }

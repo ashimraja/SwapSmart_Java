@@ -169,3 +169,35 @@
     padding-right: 9vw;
   }
 }
+
+/* CSS for Cart Count */
+.cart-count {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    padding: 0.1rem 0.2rem;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+/* CSS for User Name */
+.profile-dropdown .user-name {
+    font-weight: bold;
+    color: #333;
+}
+.logout-button{
+	    display: inline-block;
+    padding: 8px 16px;
+    background-color: #e63946; /* red tone */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+

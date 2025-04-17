@@ -16,7 +16,7 @@
 
 <div class="container">
     <!-- Filter Section -->
-    <div class="filters">
+   <!--  <div class="filters">
         <p class="filter-title" onclick="toggleFilters()">FILTERS 
             <img class="dropdown-icon" src="./assets/images/dropdown_icon.png" alt="Dropdown">
         </p>
@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-
+ -->
     <!-- Products Section -->
     <div class="products">
         <h1>Buy Refurbished Mobile Phone</h1>
