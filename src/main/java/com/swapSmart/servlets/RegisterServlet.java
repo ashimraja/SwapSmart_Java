@@ -49,6 +49,8 @@ public class RegisterServlet extends HttpServlet {
 
             int inserted = insertStmt.executeUpdate();
 
+            
+
             if (inserted > 0) {
                 response.sendRedirect("login.jsp?success=registered");
             } else {
