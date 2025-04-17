@@ -5,7 +5,7 @@
 <%@ include file="./components/navbar.jsp" %>
 
 <%
-    // Check if user is logged in
+    // Check if user is  logged in
     if (session.getAttribute("user") == null) {
         out.println("<script>alert('Please login first!'); window.location.href='login.jsp';</script>");
         return;
