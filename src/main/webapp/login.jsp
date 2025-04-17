@@ -14,6 +14,7 @@
 <%@ include file="./components/navbar.jsp" %>
 <link rel="stylesheet" type="text/css" href="./assets/css/index.css">
 
+
 <div class="main">
   <head>
     <meta charset="UTF-8">
