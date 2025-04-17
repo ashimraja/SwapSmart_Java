@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="./assets/css/login.css">
   </head>
   <body>
-    <%-- Alert Messages --%>
+    <%-- Alert Messages  --%>
     <div class="alert-container" style="text-align: center; margin-top: 10px;">
       <% if ("exists".equals(error)) { %>
         <div style="color: red;">User already exists with this email.</div>
