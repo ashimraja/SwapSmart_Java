@@ -12,7 +12,7 @@
 <body>
     <div class="about-container">
 
-        <!-- About Us Section -->
+        <!-- About Us Sections-->
         <section class="about-header">
             <h1>ABOUT <span>US</span></h1>
         </section>
