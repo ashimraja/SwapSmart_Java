@@ -14,7 +14,7 @@
             <h1>CONTACT <span>US</span></h1>
         </div>
 
-        <!-- Contact Content -->
+        <!-- Contact Contents -->
         <div class="contact-content">
             <img src="./assets/images/contact_img.png" alt="Contact Us" class="contact-image">
             <div class="contact-info">
